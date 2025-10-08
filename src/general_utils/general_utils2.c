@@ -6,7 +6,7 @@
 /*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:07:54 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 19:13:36 by devjorginho      ###   ########.fr       */
+/*   Updated: 2025/10/08 20:47:29 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_perror(void)
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
+
 int	max_index(t_stacks *stack)
 {
 	int	i;

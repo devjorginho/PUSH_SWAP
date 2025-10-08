@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:31:51 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 17:43:46 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 21:14:59 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,16 @@ typedef struct s_verify
 {
 	unsigned char	has_repeated : 1;
 	unsigned char	is_sorted : 1;
-	unsigned char	is_a_list : 1;
 }		t_verify;
+
+typedef struct s_radix_counters
+{
+    int i;
+    int j;
+    int max;
+    int len;
+    int max_bits;
+} t_radix_counters;
 
 // general utils
 void	ft_bzero(void *s, size_t n);
@@ -52,6 +60,8 @@ void	free_string(char **str);
 void	setup_verifications(t_verify *verify);
 void	validate_arguments(t_stacks *stack, t_verify *verify);
 void	index_management(t_stacks *stack);
+int		find_min_index(int *stack, int len);
+void	setup_radix_counters(t_stacks *stacks, t_radix_counters *setup);
 
 // Sort functions
 void	sort_two(t_stacks *stacks);
@@ -60,11 +70,12 @@ void	sort_four(t_stacks *stacks);
 void	sort_five(t_stacks *stacks);
 void	radix_sort(t_stacks *stacks);
 void	exec_sort(t_stacks *stacks);
+void	push_min_to_b(t_stacks *stacks);
 
 // Manage stack functions
-void	init_stacks(t_stacks *stack, int ac, char **argv, t_verify *verify);
+void	init_stacks(t_stacks *stack, int ac, char **argv);
 void	populate_stack(t_stacks *stack, int ac, char **argv);
-void	free_stacks(t_stacks *stack, t_verify *verify);
+void	free_stacks(t_stacks *stack);
 void	sa(t_stacks *stack);
 void	sb(t_stacks *stack);
 void	ss(t_stacks *stack);

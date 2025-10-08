@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_elements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:49:58 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/06 21:33:41 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 19:34:52 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ static void	rotate_elements(int *stack, int stack_size)
 	int	first;
 	int	i;
 
-	i = 0;
+	if (!stack || stack_size < 2)
+		return ;
 	first = stack[0];
-	if (!stack || !*stack)
-		return ;
-	if (stack_size < 2)
-		return ;
+	i = 0;
 	while (i < stack_size - 1)
 	{
 		stack[i] = stack[i + 1];

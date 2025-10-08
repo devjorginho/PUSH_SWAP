@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_elements.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:49:49 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/07 17:01:20 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 19:35:10 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ static void	reverse_rotate_elements(int *stack, int stack_size)
 	int	last;
 	int	i;
 
-	i = stack_size - 1;
+	if (!stack || stack_size < 2)
+		return ;
 	last = stack[stack_size - 1];
+	i = stack_size - 1;
 	while (i > 0)
 	{
 		stack[i] = stack[i - 1];

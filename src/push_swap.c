@@ -6,7 +6,7 @@
 /*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 12:56:51 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 19:14:45 by devjorginho      ###   ########.fr       */
+/*   Updated: 2025/10/08 20:22:26 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	main(int ac, char **av)
 	t_stacks		stacks;
 	static t_verify	verify;
 
-	init_stacks(&stacks, ac, av, &verify);
+	init_stacks(&stacks, ac, av);
 	populate_stack(&stacks, ac, av);
 	validate_arguments(&stacks, &verify);
 	exec_sort(&stacks);
-	free_stacks(&stacks, &verify);
+	free_stacks(&stacks);
 	return (0);
 }

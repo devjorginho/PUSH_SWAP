@@ -3,46 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   init_stacks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:11:29 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 17:41:55 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 20:26:39 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void	init_stacks(t_stacks *stack, int ac, char **argv, t_verify *verify)
+void init_stacks(t_stacks *stack, int ac, char **argv)
 {
-	if (ac == 2)
-	{
-		verify->is_a_list = 1;
-		stack->arguments_to_split = ft_split(argv[1], ' ');
-		stack->len_stack_a = 0;
-		while (stack->arguments_to_split[stack->len_stack_a])
-			stack->len_stack_a++;
-	}
-	else
-		stack->len_stack_a = ac - 1;
-	stack->stack_a = ft_calloc(stack->len_stack_a, sizeof(int));
-	stack->normalized_a = ft_calloc(stack->len_stack_a, sizeof(int));
-	stack->stack_b = ft_calloc(stack->len_stack_a, sizeof(int));
-	stack->len_stack_b = 0;
-	if (!stack->stack_a || !stack->stack_b || !stack->normalized_a)
-		return ;
+    int i, j, total_count;
+    char **split;
+
+    total_count = 0;
+    // Primeiro, contamos quantos números no total
+    for (i = 1; i < ac; i++)
+    {
+        split = ft_split(argv[i], ' ');
+        j = 0;
+        while (split[j])
+        {
+            total_count++;
+            j++;
+        }
+        // liberar memória temporária
+        free_string(split);
+    }
+
+    stack->stack_a = ft_calloc(total_count, sizeof(int));
+    stack->stack_b = ft_calloc(total_count, sizeof(int));
+    stack->normalized_a = ft_calloc(total_count, sizeof(int));
+    stack->len_stack_a = total_count;
+    stack->len_stack_b = 0;
 }
 
-void	populate_stack(t_stacks *stack, int ac, char **argv)
+void populate_stack(t_stacks *stack, int ac, char **argv)
 {
-	int	i;
+    int i, j, idx;
+    char **split;
 
-	i = 0;
-	while (i < stack->len_stack_a)
-	{
-		if (ac == 2)
-			stack->stack_a[i] = ft_atoi(stack->arguments_to_split[i]);
-		else
-			stack->stack_a[i] = ft_atoi(argv[i + 1]);
-		i++;
-	}
+    idx = 0;
+    for (i = 1; i < ac; i++)
+    {
+        split = ft_split(argv[i], ' ');
+        j = 0;
+        while (split[j])
+        {
+            stack->stack_a[idx++] = ft_atoi(split[j]);
+            j++;
+        }
+        free_string(split);
+    }
 }
+
