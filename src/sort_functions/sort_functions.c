@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:14:31 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 17:37:50 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 19:13:39 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,33 @@ void	sort_three(t_stacks *stack)
 		rra(stack);
 	}
 }
-
+void	real_four_five_sort(t_stacks *stacks)
+{
+	if (stacks->len_stack_a == 5)
+		pb(stacks);
+	pb(stacks);
+	sort_three(stacks);
+	while (stacks->len_stack_b > 0)
+	{
+		if (stacks->stack_b[0] < stacks->stack_a[0])
+			pa(stacks);
+		else if (stacks->stack_b[0] < stacks->stack_a[1])
+			(ra(stacks), pa(stacks), rra(stacks));
+		else if (stacks->stack_b[0] < stacks->stack_a[2])
+		{
+			if (stacks->len_stack_a == 4)
+				rra(stacks);
+			(rra(stacks), pa(stacks), ra(stacks), ra(stacks));
+			if (stacks->len_stack_a == 5)
+				ra(stacks);
+		}
+		else if (stacks->len_stack_a == 4
+			&& stacks->stack_b[0] < stacks->stack_a[3])
+			(rra(stacks), pa(stacks), ra(stacks), ra(stacks));
+		else
+			(pa(stacks), ra(stacks));
+	}
+}
 
 void	sort_four(t_stacks *stacks)
 {

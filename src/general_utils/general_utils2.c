@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:07:54 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 17:37:45 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 19:13:36 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,6 @@ void	ft_perror(void)
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
-void	real_four_five_sort(t_stacks *stacks)
-{
-	if (stacks->len_stack_a == 5)
-		pb(stacks);
-	pb(stacks);
-	sort_three(stacks);
-	while (stacks->len_stack_b > 0)
-	{
-		if (stacks->stack_b[0] < stacks->stack_a[0])
-			pa(stacks);
-		else if (stacks->stack_b[0] < stacks->stack_a[1])
-			(ra(stacks), pa(stacks), rra(stacks));
-		else if (stacks->stack_b[0] < stacks->stack_a[2])
-		{
-			if (stacks->len_stack_a == 4)
-				rra(stacks);
-			(rra(stacks), pa(stacks), ra(stacks), ra(stacks));
-			if (stacks->len_stack_a == 5)
-				ra(stacks);
-		}
-		else if (stacks->len_stack_a == 4
-			&& stacks->stack_b[0] < stacks->stack_a[3])
-			(rra(stacks), pa(stacks), ra(stacks), ra(stacks));
-		else
-			(pa(stacks), ra(stacks));
-	}
-}
-
 int	max_index(t_stacks *stack)
 {
 	int	i;
