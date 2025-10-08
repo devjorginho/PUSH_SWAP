@@ -6,7 +6,7 @@
 /*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:07:54 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/07 18:12:36 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:37:45 by jde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,50 +17,32 @@ void	ft_perror(void)
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
-
-void	move_min_to_top(t_stacks *stacks, int min_index)
+void	real_four_five_sort(t_stacks *stacks)
 {
-	if (min_index <= stacks->len_stack_a / 2)
+	if (stacks->len_stack_a == 5)
+		pb(stacks);
+	pb(stacks);
+	sort_three(stacks);
+	while (stacks->len_stack_b > 0)
 	{
-		while (min_index-- > 0)
-			ra(stacks);
+		if (stacks->stack_b[0] < stacks->stack_a[0])
+			pa(stacks);
+		else if (stacks->stack_b[0] < stacks->stack_a[1])
+			(ra(stacks), pa(stacks), rra(stacks));
+		else if (stacks->stack_b[0] < stacks->stack_a[2])
+		{
+			if (stacks->len_stack_a == 4)
+				rra(stacks);
+			(rra(stacks), pa(stacks), ra(stacks), ra(stacks));
+			if (stacks->len_stack_a == 5)
+				ra(stacks);
+		}
+		else if (stacks->len_stack_a == 4
+			&& stacks->stack_b[0] < stacks->stack_a[3])
+			(rra(stacks), pa(stacks), ra(stacks), ra(stacks));
+		else
+			(pa(stacks), ra(stacks));
 	}
-	else
-	{
-		min_index = stacks->len_stack_a - min_index;
-		while (min_index-- > 0)
-			rra(stacks);
-	}
-}
-
-
-int	find_min_index(int *stack, int len)
-{
-	int	min;
-	int	i;
-
-	min = stack[0];
-	if (stack[1] < min)
-	{
-		i = 1;
-		min = stack[1];
-	}
-	if (stack[2] < min)
-	{
-		i = 2;
-		min = stack[2];
-	}
-	if (stack[3] < min)
-	{
-		i = 3;
-		min = stack[3];
-	}
-	if (len == 5 && stack[4] < min)
-	{
-		i = 4;
-		min = stack[4];
-	}
-	return (i);
 }
 
 int	max_index(t_stacks *stack)

@@ -6,7 +6,7 @@
 /*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:14:31 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/07 18:13:10 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:37:50 by jde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,15 @@ void	sort_three(t_stacks *stack)
 	}
 }
 
+
 void	sort_four(t_stacks *stacks)
 {
-	int min_index;
-
-	min_index = find_min_index(stacks->stack_a, stacks->len_stack_a);
-	move_min_to_top(stacks, min_index);
-	pb(stacks);
-	sort_three(stacks);
-	pa(stacks);
+	real_four_five_sort(stacks);
 }
 
 void	sort_five(t_stacks *stacks)
 {
-	int min_index;
-
-	min_index = find_min_index(stacks->stack_a, stacks->len_stack_a);
-	move_min_to_top(stacks, min_index);
-	pb(stacks);
-	min_index = find_min_index(stacks->stack_a, stacks->len_stack_a);
-	move_min_to_top(stacks, min_index);
-	pb(stacks);
-	sort_three(stacks);
-	pa(stacks);
-	pa(stacks);
+	real_four_five_sort(stacks);
 }
 
 void	radix_sort(t_stacks *stacks)

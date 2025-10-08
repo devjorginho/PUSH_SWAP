@@ -6,7 +6,7 @@
 /*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:31:51 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/07 17:52:16 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:43:46 by jde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_verify
 {
 	unsigned char	has_repeated : 1;
 	unsigned char	is_sorted : 1;
+	unsigned char	is_a_list : 1;
 }		t_verify;
 
 // general utils
@@ -41,8 +42,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_perror(void);
 int		ft_atoi(const char *str);
-void	move_min_to_top(t_stacks *stacks, int min_index);
-int		find_min_index(int *stack, int len);
+void	real_four_five_sort(t_stacks *stacks);
 void	normalize_stack(t_stacks *stack);
 int		max_index(t_stacks *stack);
 char	**ft_split(const char *s, char c);
@@ -62,9 +62,9 @@ void	radix_sort(t_stacks *stacks);
 void	exec_sort(t_stacks *stacks);
 
 // Manage stack functions
-void	init_stacks(t_stacks *stack, int ac, char **argv);
+void	init_stacks(t_stacks *stack, int ac, char **argv, t_verify *verify);
 void	populate_stack(t_stacks *stack, int ac, char **argv);
-void	free_stacks(t_stacks *stack);
+void	free_stacks(t_stacks *stack, t_verify *verify);
 void	sa(t_stacks *stack);
 void	sb(t_stacks *stack);
 void	ss(t_stacks *stack);

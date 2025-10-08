@@ -6,16 +6,17 @@
 /*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:11:29 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/07 18:09:18 by jde-carv         ###   ########.fr       */
+/*   Updated: 2025/10/08 17:41:55 by jde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void	init_stacks(t_stacks *stack, int ac, char **argv)
+void	init_stacks(t_stacks *stack, int ac, char **argv, t_verify *verify)
 {
 	if (ac == 2)
 	{
+		verify->is_a_list = 1;
 		stack->arguments_to_split = ft_split(argv[1], ' ');
 		stack->len_stack_a = 0;
 		while (stack->arguments_to_split[stack->len_stack_a])
