@@ -3,88 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jde-carv <jde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 10:47:31 by devjorginho       #+#    #+#             */
-/*   Updated: 2025/10/06 17:16:38 by jde-carv         ###   ########.fr       */
+/*   Created: 2025/10/07 17:51:56 by jde-carv          #+#    #+#             */
+/*   Updated: 2025/10/09 12:56:18 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-static void	check_overflow(long result, int sign)
+void	ft_perror(void)
 {
-	if (result * sign > INT_MAX || result * sign < INT_MIN)
-		ft_perror();
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }
-
-static void	check_invalid_char(const char *str)
+void	free_string(char **str)
 {
-	if (*str < '0' || *str > '9')
-		ft_perror();
-}
+	int	i;
 
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*ptr;
-	size_t			i;
-
-	ptr = (unsigned char *)s;
 	i = 0;
-	while (i < n)
+	if (!str)
+		return ;
+	while (str[i])
 	{
-		ptr[i] = 0;
+		free(str[i]);
 		i++;
 	}
+	free(str);
+}
+int find_min_index(int *stack, int len)
+{
+    int i;
+    int min_index;
+
+    i = 1;
+    min_index = 0;
+    while (i < len)
+    {
+        if (stack[i] < stack[min_index])
+            min_index = i;
+        i++;
+    }
+    return min_index;
 }
 
-int	ft_atoi(const char *str)
+void push_min_to_b(t_stacks *stacks)
 {
-	long	result;
-	int		sign;
+    int min_index;
 
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*(str + 1) < '0' || *(str + 1) > '9')
-			ft_perror();
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	check_invalid_char(str);
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		check_overflow(result, sign);
-		str++;
-	}
-	if (*str != '\0')
-		ft_perror();
-	return ((int)(result * sign));
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	unsigned char	*alloc;
-	size_t			full_s;
-
-	if (!nmemb || !size)
-	{
-		alloc = malloc(0);
-		if (!alloc)
-			return (NULL);
-		return (alloc);
-	}
-	full_s = nmemb * size;
-	if (nmemb != full_s / size)
-		return (NULL);
-	alloc = malloc(full_s);
-	if (!alloc)
-		return (NULL);
-	ft_bzero(alloc, full_s);
-	return ((void *)alloc);
+    min_index = find_min_index(stacks->stack_a, stacks->len_stack_a);
+    if (min_index <= stacks->len_stack_a / 2)
+    {
+        while (min_index-- > 0)
+            ra(stacks);
+    }
+    else
+    {
+        min_index = stacks->len_stack_a - min_index;
+        while (min_index-- > 0)
+            rra(stacks);
+    }
+    pb(stacks);
 }

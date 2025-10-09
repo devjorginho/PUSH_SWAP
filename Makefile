@@ -13,8 +13,8 @@ SRCS = src/stack_manager/push_elements.c \
 	   src/arguments_checker/validate_arguments.c \
 	   src/general_utils/general_utils.c \
 	   src/general_utils/general_utils2.c \
-	   src/general_utils/general_utils3.c \
-	   src/general_utils/general_utils4.c \
+	   src/general_utils/libft_utils.c \
+	   src/general_utils/libft_utils2.c \
 	   src/sort_functions/sort_functions.c \
 	   src/sort_functions/exec_sort.c \
 	   src/push_swap.c

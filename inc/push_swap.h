@@ -6,7 +6,7 @@
 /*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:31:51 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 21:14:59 by devjorginho      ###   ########.fr       */
+/*   Updated: 2025/10/09 12:51:13 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,26 @@ typedef struct s_radix_counters
     int max_bits;
 } t_radix_counters;
 
-// general utils
+// libft utils
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
-void	ft_perror(void);
 int		ft_atoi(const char *str);
+void	ft_perror(void);
+char	**ft_split(const char *s, char c);
+
+// general utils
 void	real_four_five_sort(t_stacks *stacks);
 void	normalize_stack(t_stacks *stack);
 int		max_index(t_stacks *stack);
-char	**ft_split(const char *s, char c);
 void	free_string(char **str);
-
-// Checking flags
-void	setup_verifications(t_verify *verify);
-void	validate_arguments(t_stacks *stack, t_verify *verify);
 void	index_management(t_stacks *stack);
 int		find_min_index(int *stack, int len);
 void	setup_radix_counters(t_stacks *stacks, t_radix_counters *setup);
+void	setup_verifications(t_verify *verify);
+void	push_min_to_b(t_stacks *stacks);
+
+// Checking flags
+void	validate_arguments(t_stacks *stack, t_verify *verify);
 
 // Sort functions
 void	sort_two(t_stacks *stacks);
@@ -70,7 +73,6 @@ void	sort_four(t_stacks *stacks);
 void	sort_five(t_stacks *stacks);
 void	radix_sort(t_stacks *stacks);
 void	exec_sort(t_stacks *stacks);
-void	push_min_to_b(t_stacks *stacks);
 
 // Manage stack functions
 void	init_stacks(t_stacks *stack, int ac, char **argv);

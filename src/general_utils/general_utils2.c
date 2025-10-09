@@ -6,30 +6,26 @@
 /*   By: devjorginho <devjorginho@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:07:54 by jde-carv          #+#    #+#             */
-/*   Updated: 2025/10/08 20:47:29 by devjorginho      ###   ########.fr       */
+/*   Updated: 2025/10/09 12:56:01 by devjorginho      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void	ft_perror(void)
+int max_index(t_stacks *stack)
 {
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
+    int i;
+    int max;
 
-int	max_index(t_stacks *stack)
-{
-	int	i;
-	int	max;
-
-	max = stack->normalized_a[0];
-	for (i = 1; i < stack->len_stack_a; i++)
-	{
-		if (stack->normalized_a[i] > max)
-			max = stack->normalized_a[i];
-	}
-	return (max);
+    max = stack->normalized_a[0];
+    i = 1;
+    while (i < stack->len_stack_a)
+    {
+        if (stack->normalized_a[i] > max)
+            max = stack->normalized_a[i];
+        i++;
+    }
+    return (max);
 }
 
 void	normalize_stack(t_stacks *stack)
@@ -52,5 +48,20 @@ void	normalize_stack(t_stacks *stack)
 		stack->normalized_a[i] = count;
 		i++;
 	}
+}
+void setup_radix_counters(t_stacks *stacks, t_radix_counters *setup)
+{
+    setup->len = stacks->len_stack_a;
+    normalize_stack(stacks);
+    setup->i = 0;
+    while (setup->i < setup->len)
+    {
+        stacks->stack_a[setup->i] = stacks->normalized_a[setup->i];
+        setup->i++;
+    }
+    setup->max = max_index(stacks);
+    setup->max_bits = 0;
+    while ((setup->max >> setup->max_bits) != 0)
+        setup->max_bits++;
 }
 
